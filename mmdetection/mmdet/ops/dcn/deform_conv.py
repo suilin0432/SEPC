@@ -12,7 +12,7 @@ from . import deform_conv_cuda
 
 
 class DeformConvFunction(Function):
-
+    # PS: ctx 实际上就是我们平时用的 self...
     @staticmethod
     def forward(ctx,
                 input,
