@@ -7,6 +7,7 @@ from sepc.self_mmdet.ops.dcn.sepc_dconv import sepc_conv
 from torch.nn import init as init
 
 
+# 这些在声明的时候会注入到mmdetection的Registry中，所以放在哪里声明都是可以的，只要能引入对应的Registry
 @NECKS.register_module
 class SEPC(nn.Module):
 
@@ -20,6 +21,16 @@ class SEPC(nn.Module):
                  Pconv_num=4,
 
                  ):
+        """
+        SEPC模块的初始化函数
+        :param in_channels: type->list: 输入进来的每个特征层次的通道数
+        :param out_channels: int: 特征层次输出的通道数
+        :param num_outs: 输出的特征图的数目
+        :param pconv_deform:
+        :param lcconv_deform:
+        :param iBN:
+        :param Pconv_num:
+        """
         super(SEPC, self).__init__()
         assert isinstance(in_channels, list)
         self.in_channels = in_channels

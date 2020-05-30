@@ -16,6 +16,7 @@ from mmdet.datasets import build_dataset
 from mmdet.models import build_detector
 from mmdet.utils import collect_env, get_root_logger
 
+# 同理，只是将SEPC的文件引入路径中
 import sys
 sys.path.insert(0,"../..")
 from sepc.self_mmdet import *

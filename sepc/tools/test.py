@@ -11,6 +11,7 @@ from mmdet.apis import multi_gpu_test, single_gpu_test
 from mmdet.core import wrap_fp16_model
 from mmdet.datasets import build_dataloader, build_dataset
 from mmdet.models import build_detector
+# 相比mmdet的test.py只是加入了SEPC中的python文件进入查询路径中去进行训练
 import sys
 sys.path.insert(0,"../..")
 from sepc.self_mmdet import *
