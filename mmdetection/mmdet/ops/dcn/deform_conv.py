@@ -11,6 +11,7 @@ from mmdet.utils import print_log
 from . import deform_conv_cuda
 
 
+# 有时间仔细读一下 deformable conv 的实现
 class DeformConvFunction(Function):
     # PS: ctx 实际上就是我们平时用的 self...
     @staticmethod
@@ -24,6 +25,7 @@ class DeformConvFunction(Function):
                 groups=1,
                 deformable_groups=1,
                 im2col_step=64):
+        # groups: type->int: 进行组卷积的分组数
         if input is not None and input.dim() != 4:
             raise ValueError(
                 'Expected 4D tensor as input, got {}D tensor instead.'.format(

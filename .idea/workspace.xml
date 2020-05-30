@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05c4485d-3b62-4f07-b19d-14610a036069" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mmdetection/mmdet/ops/dcn/deform_conv.py" afterPath="$PROJECT_DIR$/mmdetection/mmdet/ops/dcn/deform_conv.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sepc/self_mmdet/models/necks/sepc.py" afterPath="$PROJECT_DIR$/sepc/self_mmdet/models/necks/sepc.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sepc/self_mmdet/ops/dcn/sepc_dconv.py" afterPath="$PROJECT_DIR$/sepc/self_mmdet/ops/dcn/sepc_dconv.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +19,8 @@
       <file leaf-file-name="sepc.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sepc/self_mmdet/models/necks/sepc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="117" column="26" lean-forward="false" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+            <state relative-caret-position="100">
+              <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -28,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sepc_dconv.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sepc_dconv.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sepc/self_mmdet/ops/dcn/sepc_dconv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+            <state relative-caret-position="258">
+              <caret line="54" column="37" lean-forward="false" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -40,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deform_conv.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="deform_conv.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mmdetection/mmdet/ops/dcn/deform_conv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+            <state relative-caret-position="464">
+              <caret line="233" column="24" lean-forward="false" selection-start-line="233" selection-start-column="8" selection-end-line="233" selection-end-column="24" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -98,6 +98,12 @@
       <find>lbn</find>
       <find>group</find>
       <find>deform_conv</find>
+      <find>ctx.groups</find>
+      <find>deform_conv_cuda</find>
+      <find>DeformConv\(</find>
+      <find>start</find>
+      <find>weight</find>
+      <find>self.weight</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -108,8 +114,9 @@
       <list>
         <option value="$PROJECT_DIR$/sepc/tools/test.py" />
         <option value="$PROJECT_DIR$/sepc/tools/train.py" />
-        <option value="$PROJECT_DIR$/sepc/self_mmdet/models/necks/sepc.py" />
         <option value="$PROJECT_DIR$/mmdetection/mmdet/ops/dcn/deform_conv.py" />
+        <option value="$PROJECT_DIR$/sepc/self_mmdet/models/necks/sepc.py" />
+        <option value="$PROJECT_DIR$/sepc/self_mmdet/ops/dcn/sepc_dconv.py" />
       </list>
     </option>
   </component>
@@ -709,40 +716,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sepc/self_mmdet/models/anchor_heads/fsaf_head.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sepc/self_mmdet/models/necks/sepc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="117" column="26" lean-forward="false" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sepc/self_mmdet/ops/dcn/sepc_dconv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mmdetection/mmdet/ops/dcn/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="57" lean-forward="false" selection-start-line="1" selection-start-column="57" selection-end-line="1" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/torch/nn/modules/conv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="318" column="33" lean-forward="false" selection-start-line="318" selection-start-column="33" selection-end-line="318" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -757,12 +742,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sepc/self_mmdet/models/anchor_heads/fsaf_head.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mmdetection/mmdet/ops/dcn/deform_conv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+        <state relative-caret-position="464">
+          <caret line="233" column="24" lean-forward="false" selection-start-line="233" selection-start-column="8" selection-end-line="233" selection-end-column="24" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sepc/self_mmdet/models/necks/sepc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sepc/self_mmdet/ops/dcn/sepc_dconv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="54" column="37" lean-forward="false" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>

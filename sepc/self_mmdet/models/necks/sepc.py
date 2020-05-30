@@ -8,6 +8,8 @@ from torch.nn import init as init
 
 # PS: Pconv是在FPN后接入的哦
 
+# PS: 为什么 Pconv 中使用 0.01 正态分布进行初始化, 但是在引用 sepc_dconv 以及 sepc_dconv 使用父类 DeformConv 的时候都分别
+#     会初始化... 就很灵性...
 
 # 这些在声明的时候会注入到mmdetection的Registry中，所以放在哪里声明都是可以的，只要能引入对应的Registry
 @NECKS.register_module
@@ -105,7 +107,7 @@ class PConvModule(nn.Module):
         :param out_channels: type->int: 输出的特征通道数
         :param kernel_size: type->list: 卷积核的大小
         :param dilation: type->list: 卷积核空洞的大小
-        :param groups: type->list: 组数
+        :param groups: type->list: 组卷积数
         :param iBN: type->func: integrated BN函数
         :param part_deform: type->bool: 是否使用 SEPC (在pconv中使用deformable)
         """
