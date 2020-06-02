@@ -5,6 +5,10 @@ from .random_sampler import RandomSampler
 
 
 # Libra R-CNN 中提出的方法
+# 之前的误解:
+#      因为以为直接是对 bins 直接随机采样，没有多考虑，认为 70% 左右的 0-0.05 的bins 中怎么采样都不会超过 30%,
+#      但是实际上采样过程中存在着数量不够，以及只对 negative proposals 进行 iou balanced sampling 的操作,
+#      因此实际上 0-0.05 的部分在 IoU Balanced sampling 操作之后还是占据相当大的比例的. 这也许也是一个比较重要的一部分了
 class IoUBalancedNegSampler(RandomSampler):
     """IoU Balanced Sampling
 
@@ -50,20 +54,33 @@ class IoUBalancedNegSampler(RandomSampler):
         self.floor_fraction = floor_fraction
         self.num_bins = num_bins
 
+    # 进行 iou_sampling_set 的 IoU balance sampling 的重要部分
     def sample_via_interval(self, max_overlaps, full_set, num_expected):
+        """
+        :param max_overlaps: 每个proposal的最大重叠 IoU
+        :param full_set: iou_sampling_neg_inds, 即 iou_sampling_set 中对应的 idx
+        :param num_expected: 期望采样的数量
+        :return:
+        """
+        # 获取最大的 overlap IoU 的大小
         max_iou = max_overlaps.max()
+        # 获取 iou bins 的步长(长度 或者说是 宽)
         iou_interval = (max_iou - self.floor_thr) / self.num_bins
+        # 每个 bin 中期望分配的数量
         per_num_expected = int(num_expected / self.num_bins)
-
+        # 最终选取采样 idx
         sampled_inds = []
+        # 从每个 bins 中进行采样
         for i in range(self.num_bins):
             start_iou = self.floor_thr + i * iou_interval
             end_iou = self.floor_thr + (i + 1) * iou_interval
+            # 获取当前 bins 中的 proposals 的 id
             tmp_set = set(
                 np.where(
                     np.logical_and(max_overlaps >= start_iou,
                                    max_overlaps < end_iou))[0])
             tmp_inds = list(tmp_set & full_set)
+            # 进行采样
             if len(tmp_inds) > per_num_expected:
                 tmp_sampled_set = self.random_choice(tmp_inds,
                                                      per_num_expected)
@@ -72,6 +89,7 @@ class IoUBalancedNegSampler(RandomSampler):
             sampled_inds.append(tmp_sampled_set)
 
         sampled_inds = np.concatenate(sampled_inds)
+        # 数量不够的时候随机进行选取
         if len(sampled_inds) < num_expected:
             num_extra = num_expected - len(sampled_inds)
             extra_inds = np.array(list(full_set - set(sampled_inds)))
