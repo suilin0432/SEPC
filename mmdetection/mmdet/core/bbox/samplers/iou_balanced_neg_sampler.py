@@ -4,11 +4,12 @@ import torch
 from .random_sampler import RandomSampler
 
 
+# Libra R-CNN 中提出的方法
 class IoUBalancedNegSampler(RandomSampler):
     """IoU Balanced Sampling
 
     arXiv: https://arxiv.org/pdf/1904.02701.pdf (CVPR 2019)
-
+    根据 IoU 去进行 proposals 的 sample.
     Sampling proposals according to their IoU. `floor_fraction` of needed RoIs
     are sampled from proposals whose IoU are lower than `floor_thr` randomly.
     The others are sampled from proposals whose IoU are higher than
@@ -31,6 +32,14 @@ class IoUBalancedNegSampler(RandomSampler):
                  floor_fraction=0,
                  num_bins=3,
                  **kwargs):
+        """
+
+        :param num: proposal的数量
+        :param pos_fraction: 正负(positive/negative)样本的比例
+        :param floor_thr: 进行 IoU balanced sampling的最低的 IoU 比例, 默认使用 -1, 即对所有都进行 IoU balanced sampling
+        :param floor_fraction: ???
+        :param num_bins: 划分为 num_bins 个区域进行 Libra R-CNN 中 IoU balanced sampling
+        """
         super(IoUBalancedNegSampler, self).__init__(num, pos_fraction,
                                                     **kwargs)
         assert floor_thr >= 0 or floor_thr == -1
@@ -72,6 +81,11 @@ class IoUBalancedNegSampler(RandomSampler):
 
         return sampled_inds
 
+    # PS: 这里只重写了 _sample_neg, 并没有重写 _sample_pos, 应该是 positive 的 anchor 仍然都要(大部分情况是都要的)，negative 的
+    #     anchor 才是按照 IoU-balanced sampling 方法来选择性的去要
+    # 这么看来，实际上 IoU-balanced sampling 方法是保留了所有的positive的(相对来说通常都是高IoU的)proposal的情况下，
+    # 尽可能的去多 sample 高 IoU 的 anchor. 因为高 IoU proposal(通常来说 > 0.7) 以及与其 sample 出的框有最高 IoU 的那个 proposal
+    # 才被视为 positive anchor. 但是其实有很多框有相对较高的 IoU, 却被过多的 低 IoU proposal 所淹没, 所以在采样的时候比较低.
     def _sample_neg(self, assign_result, num_expected, **kwargs):
         neg_inds = torch.nonzero(assign_result.gt_inds == 0)
         if neg_inds.numel() != 0:
